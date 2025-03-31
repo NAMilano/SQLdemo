@@ -1,22 +1,17 @@
 import mysql from 'mysql2';
-import bcrypt from 'bcryptjs'; // import the password encryption library
-import { config } from 'dotenv';  // import the database credentials from the .env file
 
-// get the database credentials from the .env file
-config();
-
-// assign the database credentials to variables
-const DB_HOST = process.env.DB_HOST;
-const DB_USER = process.env.DB_USER;
-const DB_PASSWORD = process.env.DB_PASSWORD;
-const DB_NAME = process.env.DB_NAME;
+const DB_HOST = "csi3480-courseproject.cds6mc4ieyzx.us-east-2.rds.amazonaws.com";
+const DB_USER = "admin";
+const DB_PASSWORD = "adminpassword";
+const DB_NAME = "sqldemo";
 
 // Create a connection to the database
 const connection = mysql.createConnection({
   host: DB_HOST, // Amazon RDS server endpoint
   user: DB_USER, // MySQL username
   password: DB_PASSWORD, //  MySQL password
-  database: DB_NAME // Database name
+  database: DB_NAME, // Database name
+  multipleStatements: true, // allows for multiple sql statement per query - vulnerable to injections
 });
 
 // Connect to MySQL
@@ -29,7 +24,7 @@ connection.connect((err) => {
 });
 
 const defaultUser = {
-  iduser: '', // Generated UNIQUE PK ID
+  iduser: '', // Generated UNIQUE PK ID by database
   username: '',
   password: '',
   cellphone: '',
@@ -38,25 +33,18 @@ const defaultUser = {
 // Function to add a new user
 const addUser = (user) => {
   return new Promise((resolve, reject) => {
-    // Hash the password before storing it
-    bcrypt.hash(user.password, 10, (err, hashedPassword) => {
-
+    const query = 'INSERT INTO user (username, password, cellphone) VALUES ("' + user.username + '", "' + user.password + '", "' + user.cellphone + '")';
+    connection.query(query, (err, results) => {
       if (err) {
-        return reject(new Error('Error hashing password.'));
-      }
-      const query = 'INSERT INTO user (username, password, cellphone) VALUES (?, ?, ?)';
-      connection.query(query, [user.username, hashedPassword, user.cellphone], (err, results) => {
-        if (err) {
-          if (err.code === 'ER_DUP_ENTRY') {
-            return reject(new Error('Username/Cellphone is already connected to an account.'));
-          }
-          console.error('Error adding user: ', err);
-          return reject(err);
+        if (err.code === 'ER_DUP_ENTRY') {
+          return reject(new Error('Username/Cellphone is already connected to an account.'));
         }
-        user.iduser = results.insertId;
-        console.log(user.iduser);
-        resolve(user);
-      });
+        console.error('Error adding user: ', err);
+        return reject(err);
+      }
+      user.iduser = results.insertId;
+      console.log(user.iduser);
+      resolve(user);
     });
   });
 };
@@ -64,8 +52,9 @@ const addUser = (user) => {
 // function for user authentication
 const userLogin = (user) => {
   return new Promise((resolve, reject) => {
-    const query = 'SELECT * FROM user WHERE username = ?';
-    connection.query(query, [user.username], (err, results) => {
+    const query = 'SELECT * FROM user WHERE username = "' + user.username + '" AND password = "' + user.password + '";';
+    console.log(query);
+    connection.query(query, (err, results) => {
       if (err) {
         console.error('Error querying the database: ', err);
         return reject(err);
@@ -73,19 +62,9 @@ const userLogin = (user) => {
       if (results.length === 0) {
         return reject(new Error('Invalid username or password'));
       }
-      const storedUser = results[0]; 
-      bcrypt.compare(user.password, storedUser.password, (err, isMatch) => { // Compare the entered password with the stored hashed password
-        if (err) {
-          console.error('Error comparing passwords: ', err);
-          return reject(new Error('Password comparison failed'));
-        }
-        if (isMatch) {
-          Object.assign(user, storedUser);
-          resolve(user);
-        } else {
-          return reject(new Error('Invalid username or password'));
-        }
-      });
+      console.log("user returned:", results[0]);
+      const user = results[0];
+      resolve(user);
     });
   });
 };

@@ -12,15 +12,17 @@ const LoginPage = () => {
   const { login } = useUser(); 
   const navigate = useNavigate(); 
 
+  // default user object
   const defaultUser = {
     iduser: '',
     username: '',
     password: '',
     cellphone: '',
   };
-
+  
+  // handles login submission
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // dont allow blank entries
     try {
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
@@ -30,8 +32,7 @@ const LoginPage = () => {
       if (response.ok) {
         const data = await response.json();
         login(data); // Store user data in context
-        //window.location.reload();
-        navigate('/user'); 
+        navigate('/user'); // navigate to the user info page after successful login
       } else {
         alert('Invalid username and/or password. Please try again.');
       }
@@ -40,62 +41,16 @@ const LoginPage = () => {
     }
   };
   
+  // handle account creation submission
   const handleCreateAccount = async (e) => {
-    e.preventDefault();
-  
-    // validate the username, password, and cellphone user inputs
-    // only alphanumeric characters are allowed for the username
-    if (!/^[a-zA-Z0-9]+$/.test(username)) {
-      alert("Username must be alphanumeric");
-      return;
-    }
-    // username must be at least 3 characters long
-    if (username.length < 3) {
-      alert("Username must be at least 3 characters long");
-      return;
-    }
-    // password must be at least 5 characters long
-    if (password.length < 5) {
-      alert("Password must be at least 5 characters long");
-      return;
-    }
-    // password must contain at least one lowercase letter
-    if (!/[a-z]/.test(password)) {
-      alert("Password must contain at least one lowercase letter.");
-      return;
-    }
-    // password must contain at least one uppercase letter
-    if (!/[A-Z]/.test(password)) {
-      alert("Password must contain at least one uppercase letter.");
-      return;
-    }
-    // password must contain at least one number
-    if (!/\d/.test(password)) {
-      alert("Password must contain at least one number.");
-      return;
-    }
-    // password must contain at least one special character from !@#$%^&*
-    if (!/[!@#$%^&*]/.test(password)) {
-      alert("Password must contain at least one of the following special characters !@#$%^&*");
-      return;
-    }
-    // password cannot contain the following characters '\";()|\\<>-.
-    if (/['";()|\\<>-]/.test(password)) {
-      alert("Password cannot contain the following special characters '\";()|\\<>-.");
-      return;
-    }
-    // cellphone must be 10 digits long and only numbers (no dashes)
-    if (!/^[0-9]{10}$/.test(cellphone)) {
-      alert("Please enter a valid 10-digit phone number");
-      return;
-    }
-  
+    e.preventDefault(); // dont allow blank entries
+
     // Create the new user object
     const newUser = {
       ...defaultUser,
-      username: username.trim(),    // trim any off extra spaces
-      password: password.trim(),    // trim any off extra spaces
-      cellphone: cellphone.trim(),  // trim any off extra spaces
+      username: username,   
+      password: password,    
+      cellphone: cellphone,  
     };
   
     try {
@@ -105,13 +60,10 @@ const LoginPage = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser),
       });
-  
       if (response.ok) {
         const data = await response.json();
-        login(data); 
-        console.log(data);
-        //window.location.reload();
-        navigate('/user'); 
+        login(data); // store user data in context
+        navigate('/user'); // navigate to the user info page after successful account creation
       } else {
         alert('Error creating account');
       }
@@ -137,9 +89,6 @@ const LoginPage = () => {
           </ul>
         </nav>
       </header>
-
-
-
       <div className="info-wrapper">
         <div className="image-container"></div>
         <div className="quote-container">
@@ -152,7 +101,6 @@ const LoginPage = () => {
             <button className={activeTab === 'login' ? 'active' : ''} onClick={() => setActiveTab('login')}>Login</button>
             <button className={activeTab === 'create' ? 'active' : ''} onClick={() => setActiveTab('create')}>Create Account</button>
           </div>
-
           {activeTab === 'login' ? (
             <div>
               <h1>Login</h1>
@@ -180,11 +128,6 @@ const LoginPage = () => {
           )}
         </div>
       </div>
-
-
-
-
-
       <footer>
         <p><a href="#">About Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
       </footer>
