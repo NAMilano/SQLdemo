@@ -54,7 +54,6 @@ const addUser = (user) => {
           return reject(err);
         }
         user.iduser = results.insertId;
-        console.log(user.iduser);
         resolve(user);
       });
     });

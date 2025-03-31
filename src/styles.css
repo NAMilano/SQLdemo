@@ -6,7 +6,6 @@
   font-weight: 600;
   font-style: normal;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -19,20 +18,17 @@ body {
    background-color: rgb(233, 233, 233);
    position: relative;
 }
-
 h1 {
     font-size: 40px;
     line-height: 64px;
     text-align: center;
 
 }
-
 h2 {
     font-size: 32px;
     line-height: 64px;
     text-align: center;
 }
-
 h2.products {
     font-size: 40px;
     line-height: 64px;
@@ -45,6 +41,9 @@ p {
 
 }
 
+
+
+/* START Button styling */
 button {
    display: inline-block;
    width: 100%;
@@ -59,20 +58,18 @@ button {
    background: rgb(140, 30, 30); 
    border: none;
 }
-
 button:hover {
    cursor: pointer;
    transition: 0.3s ease;
-   background: rgba(100, 0, 0, 1);  /* Example hover effect */
+   background: rgba(100, 0, 0, 1);
 }
-
 .submit-button {
-   position: absolute; /* Position the button absolutely */
-   bottom: 20px; /* Push it 20px from the bottom of the container */
+   position: absolute; 
+   bottom: 20px; 
    left: 50%;
-   transform: translateX(-50%); /* Center it horizontally */
+   transform: translateX(-50%);
    display: inline-block;
-   width: 95%; /* Stretch the button */
+   width: 95%; 
    font-family: "Inter", sans-serif;
    color: rgb(255, 255, 255);
    padding: 10px 20px;
@@ -84,11 +81,14 @@ button:hover {
    background: rgb(140, 30, 30);
    border: none;
 }
-
 .submit-button:hover {
-   transform: scale(1.0) translateX(-50%); /* Keep horizontal centering */
+   transform: scale(1.0) translateX(-50%); 
 }
+/* END Button styling */
 
+
+
+/* START text styling */
 .container {
    display: flex;
    justify-content: center;
@@ -97,14 +97,11 @@ button:hover {
    line-height:200px;
    text-align:center
 } 
-
-
 .text-sections {
    width: 80%;
    margin: 0 auto;
    padding-top: 20px;
 }
-
 .box {
    background-color: rgb(239,233,226);
    border-radius: 8px;
@@ -114,10 +111,9 @@ button:hover {
    max-width: 800px;
    width: 100%;
 }
-
 #header {
    display: flex;
-   justify-content: space-between; /* Space out logo/container and navbar */
+   justify-content: space-between; 
    align-items: center;
    padding: 20px 50px;
    background-color: rgb(140, 30, 30);
@@ -128,41 +124,44 @@ button:hover {
    left: 0;
    margin-bottom: 15px;
 }
-
-.logo-container {
-   display: flex;
-   align-items: center; /* Align the logo and title vertically */
-}
-
-.logo {
-   height: 40px; /* Adjust logo size */
-   margin-right: 10px; /* Space between logo and title */
-}
-
 h2 {
    font-size: 24px;
    font-weight: 700;
    color: white;
    margin: 0;
 }
+/* END text styling */
 
-#navbar {
-   flex-grow: 1; /* Make the navbar take up available space */
+
+
+/* START logo styling */
+.logo-container {
    display: flex;
-   justify-content: center; /* Center the navbar links */
+   align-items: center; 
 }
+.logo {
+   height: 40px; 
+   margin-right: 10px; 
+}
+/* END logo styling */
 
+
+
+/* START navbar styling */
+#navbar {
+   flex-grow: 1; 
+   display: flex;
+   justify-content: center; 
+}
 #navbar ul {
    display: flex;
    padding: 0;
    margin: 0;
    list-style: none;
 }
-
 #navbar li {
-   margin: 0 20px; /* Space between nav items */
+   margin: 0 20px; 
 }
-
 #navbar li a {
    text-decoration: none;
    color: white;
@@ -170,80 +169,69 @@ h2 {
    font-weight: 700;
    transition: 0.3s ease;
 }
-
 #navbar li a:hover {
-   color: #bbb; /* Change color on hover */
+   color: #bbb; 
 }
+/* END navbar styling */
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* Wrapper for login container, image, and text */
+/* START image styling */
 .info-wrapper {
    display: flex;
    align-items: center;
    justify-content: center;
    margin: 50px 100px 50px auto;
-   gap: 30px; /* Adds space between the items */
+   gap: 30px; 
  }
- 
- /* Image container on the left */
  .image-container {
-   flex: 2; /* Take up 2 parts of the space compared to the form container */
+   flex: 2; 
    max-width: 500px;
-   height: 780px; /* Adjust the height to make it smaller */
+   height: 780px; 
    background-image: url('./assets/piggybank.jpg');
-   background-position: center; /* Center the image */
-   background-repeat: no-repeat; /* Prevent the image from repeating if it's smaller than the container */
-   background-size: cover; /* Ensure the image covers the container */
+   background-position: center;
+   background-repeat: no-repeat; 
+   background-size: cover; 
    border-radius: 4px;
    margin-left: 50px;
  }
+ /* START image styling */
  
-/* Text container styling (between the image and login box) */
+
+
+/* START front page quote styling */
 .quote-container {
    flex: 1;
    display: flex;
-   flex-direction: column; /* Arrange text in a column (vertically) */
-   justify-content: flex-start; /* Align text to the top of the container */
-   align-items: flex-start; /* Align text to the left */
-   font-weight: bold; /* Make text bold */
-   color: rgba(0, 0, 0, 0.7); /* Slightly dark gray */
-   text-align: left; /* Align text to the left */
-   height: 100%; /* Ensure full container height is used */
-   position: relative; /* Allow using top positioning */
-   top: -150px; /* Move text up by 50px (adjust this as needed) */
+   flex-direction: column; 
+   justify-content: flex-start; 
+   align-items: flex-start;
+   font-weight: bold; 
+   color: rgba(0, 0, 0, 0.7);
+   text-align: left; 
+   height: 100%; 
+   position: relative; 
+   top: -150px; 
 }
-
-
- 
  .quote-container p {
-   font-size: 64px; /* Increase font size */
-   font-weight: bold; /* Make text bold */
-   color: rgba(0, 0, 0, 0.7); /* Slightly dark gray */
-   margin: 5px 0; /* Add some space between lines */
-   text-align: left; /* Ensure text is aligned to the left */
+   font-size: 64px; 
+   font-weight: bold; 
+   color: rgba(0, 0, 0, 0.7);
+   margin: 5px 0; 
+   text-align: left; 
  }
- 
- 
+/* END front page quote styling */
 
- /* Login container (styling already provided) */
+
+
+ /* START user info display styling */
  .info-container {
-   width: 80vw;         /* 80% of the viewport width */
-   min-width: 800px;    /* Ensures the width doesn't shrink below 800px */
-   max-width: 800px;    /* Maximum width remains 800px */
-   min-height: 600px;   /* Minimum height ensures it doesn't shrink below 600px */
-   max-height: 600px;   /* Maximum height is 600px */
-   overflow: hidden;    /* Hides content that overflows */
+   width: 80vw;         
+   min-width: 800px;  
+   max-width: 800px;    
+   min-height: 600px;   
+   max-height: 600px; 
+   overflow: hidden;    
    position: relative;
    margin: 50px 0px 50px auto;
    background: rgb(239,233,226);
@@ -251,20 +239,14 @@ h2 {
    border-radius: 4px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
  }
- 
-
-
-
 .info-container h1 {
    text-align: center;
    color: black;
 }
-
 .info-container label {
    display: block;
    margin: 10px 0 5px;
 }
-
 .info-container input {
    width: 100%;
    padding: 10px;
@@ -272,8 +254,11 @@ h2 {
    border: 1px solid #ccc;
    border-radius: 3px;
 }
+ /* END user info display styling */
 
-/* Footer Styling */
+
+
+/* START Footer Styling */
 footer {
    display: flex;
    flex-direction: column; 
@@ -289,36 +274,32 @@ footer {
    width: 100%; 
    padding: 10px 50px; 
 }
-
 footer a {
    color: white;
    text-decoration: none;
    transition: color 0.3s ease;
 }
-
 footer a:hover {
    transform: scale(1.1); 
    opacity: 0.8;  
 }
-
-/* Footer text links */
 footer p {
    margin-top: 10px;
    font-size: 14px; 
 }
-
 footer p a {
    margin: 0 8px;  
 }
+/* END Footer Styling */
 
-/* Login Tab Styling */
 
+
+/* Login tab buttons styling */
 .tab-buttons {
    display: flex;
    justify-content: center;
    margin-bottom: 20px;
 }
-
 .tab-buttons button {
    background: rgb(119, 86, 86, 0.7); 
    border: 1px solid #ccc;
@@ -327,32 +308,21 @@ footer p a {
    font-size: 16px;
    width: 50%;
 }
-
 .tab-buttons button.active {
    background: rgb(140, 30, 30); 
    color: rgb(255, 255, 255);
    transition: 0.3s ease;
 }
-
 .tab-buttons button:not(.active):hover {
    background: rgba(100, 0, 0);
    transition: 0.3s ease;
 }
+/* End login tab styling */
 
-/* End Login Tab Styling */
 
-/* START UPDATED Footers to make the footer stick to the bottom of the page */
+
+/* UPDATE makes footer stick to bottom of the page */
 html, body {
    height: 100%;
    margin: 0; 
- }
-
-
-/* END UPDATED Footers to make the footer stick to the bottom of the page */
-
-
-
-
- 
-
-
+}

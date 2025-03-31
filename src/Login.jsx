@@ -12,6 +12,7 @@ const LoginPage = () => {
   const { login } = useUser(); 
   const navigate = useNavigate(); 
 
+  // default user object
   const defaultUser = {
     iduser: '',
     username: '',
@@ -19,8 +20,9 @@ const LoginPage = () => {
     cellphone: '',
   };
 
+  // handle login submission
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // dont allow empty input fields
     try {
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
@@ -30,8 +32,7 @@ const LoginPage = () => {
       if (response.ok) {
         const data = await response.json();
         login(data); // Store user data in context
-        //window.location.reload();
-        navigate('/user'); 
+        navigate('/user'); // naigate to the user info page after successful login
       } else {
         alert('Invalid username and/or password. Please try again.');
       }
@@ -40,8 +41,9 @@ const LoginPage = () => {
     }
   };
   
+  // handle account creation submission
   const handleCreateAccount = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // dont all empty input fields
   
     // validate the username, password, and cellphone user inputs
     // only alphanumeric characters are allowed for the username
@@ -99,7 +101,6 @@ const LoginPage = () => {
     };
   
     try {
-      console.log(newUser);
       const response = await fetch('http://localhost:5000/api/createUser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -108,10 +109,8 @@ const LoginPage = () => {
   
       if (response.ok) {
         const data = await response.json();
-        login(data); 
-        console.log(data);
-        //window.location.reload();
-        navigate('/user'); 
+        login(data); // store user data in context
+        navigate('/user'); // navigate to the user info page after successful account creation
       } else {
         alert('Error creating account');
       }
@@ -137,9 +136,6 @@ const LoginPage = () => {
           </ul>
         </nav>
       </header>
-
-
-
       <div className="info-wrapper">
         <div className="image-container"></div>
         <div className="quote-container">
@@ -152,7 +148,6 @@ const LoginPage = () => {
             <button className={activeTab === 'login' ? 'active' : ''} onClick={() => setActiveTab('login')}>Login</button>
             <button className={activeTab === 'create' ? 'active' : ''} onClick={() => setActiveTab('create')}>Create Account</button>
           </div>
-
           {activeTab === 'login' ? (
             <div>
               <h1>Login</h1>
@@ -180,11 +175,6 @@ const LoginPage = () => {
           )}
         </div>
       </div>
-
-
-
-
-
       <footer>
         <p><a href="#">About Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
       </footer>

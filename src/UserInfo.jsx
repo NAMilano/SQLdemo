@@ -12,6 +12,7 @@ const UserInfo = () => {
     cellphone: ''
   });
 
+  // gets user infor from their current stored information
   useEffect(() => {
     if (user) {
       setUserDetails({
@@ -20,7 +21,6 @@ const UserInfo = () => {
         password: user.password || '',
         cellphone: user.cellphone || ''
       });
-      console.log(userDetails);
     }
   }, [user]);
 
@@ -41,7 +41,6 @@ const UserInfo = () => {
           </ul>
         </nav>
       </header>
-
       <div className="info-wrapper">
         <div className="image-container"></div>
         <div className="quote-container">
@@ -59,8 +58,6 @@ const UserInfo = () => {
           </div>
         </div>
       </div>
-
-
       <footer>
         <p><a href="#">About Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
       </footer>
