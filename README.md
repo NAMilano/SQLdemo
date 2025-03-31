@@ -1,8 +1,21 @@
-# React + Vite
+SQL Demo Project for CSI-3480 Security and Privacy in Computing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fake bank login and create account web application to demenstrate SQL injections.
 
-Currently, two official plugins are available:
+Featuring two branches:
+Secure(Main) branch is fully protected from SQL injections aswell as implementing various proper coding techniques to ensure maximum security. 
+Unsecure branch is susceptible to SQL injections and uses poor coding practices leaving many vulernabilities. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+Secure Branch (Main)
+  - Uses prepared SQL statements
+  - Implements input validation and sanitization
+  - Strong password requirements
+  - Password encryption
+  - Use of enviromental variables inplace of credentials
+
+Unsecure Branch
+  - No SQL injection protection
+  - Poor coding practices
+  - Poor overall security
