@@ -14,6 +14,7 @@ const UserInfo = () => {
 
   // gets user info from their current stored information
   useEffect(() => {
+    console.log("user data", user); // unsecure show all user data in console log
     if (user) {
       setUserDetails({
         iduser: user.IDuser || user.iduser || '',

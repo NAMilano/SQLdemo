@@ -34,6 +34,7 @@ const defaultUser = {
 const addUser = (user) => {
   return new Promise((resolve, reject) => {
     const query = 'INSERT INTO user (username, password, cellphone) VALUES ("' + user.username + '", "' + user.password + '", "' + user.cellphone + '")';
+    console.log("Attempted query: ", query); // display the attempted query
     connection.query(query, (err, results) => {
       if (err) {
         if (err.code === 'ER_DUP_ENTRY') {
@@ -53,7 +54,7 @@ const addUser = (user) => {
 const userLogin = (user) => {
   return new Promise((resolve, reject) => {
     const query = 'SELECT * FROM user WHERE username = "' + user.username + '" AND password = "' + user.password + '";';
-    console.log(query);
+    console.log("Attempted query: ", query); // display the attempted query
     connection.query(query, (err, results) => {
       if (err) {
         console.error('Error querying the database: ', err);
@@ -62,7 +63,7 @@ const userLogin = (user) => {
       if (results.length === 0) {
         return reject(new Error('Invalid username or password'));
       }
-      console.log("user returned:", results[0]);
+      console.log("User returned:", results[0]); // unsecure show all the database results to console log
       const user = results[0];
       resolve(user);
     });

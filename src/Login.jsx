@@ -31,6 +31,7 @@ const LoginPage = () => {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log("user data", data); // unsecure show all user data in console log
         login(data); // Store user data in context
         navigate('/user'); // navigate to the user info page after successful login
       } else {
@@ -62,6 +63,7 @@ const LoginPage = () => {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log("user data", data); // unsecure show all user data in console log
         login(data); // store user data in context
         navigate('/user'); // navigate to the user info page after successful account creation
       } else {
