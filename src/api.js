@@ -19,7 +19,7 @@ app.post('/api/createUser',async (req, res) => {
       const newUser = await addUser({ username, password, cellphone });
       res.json(newUser);
     } catch (err) {
-      res.status(500).send('Error creating user');
+      res.status(500).send(err.message);
     }
   }
 );
@@ -36,7 +36,7 @@ app.post('/api/login', async (req, res) => {
       res.status(401).send('Invalid credentials');
     }
   } catch (err) {
-    res.status(500).send('Error logging in');
+    res.status(500).send(err.message);
   }
 });
 

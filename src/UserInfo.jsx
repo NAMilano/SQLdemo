@@ -39,7 +39,6 @@ const UserInfo = () => {
             <li><a href="#">Services</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="/#">Contact</a></li>
-            {user.iduser === 1  || user.IDuser === 1 && <li><a href="/lookup">Admin</a></li>}
           </ul>
         </nav>
       </header>

@@ -50,22 +50,33 @@ const addUser = (user) => {
   });
 };
 
-// function for user authentication
 const userLogin = (user) => {
   return new Promise((resolve, reject) => {
     const query = 'SELECT * FROM user WHERE username = "' + user.username + '" AND password = "' + user.password + '";';
-    console.log("Attempted query: ", query); // display the attempted query
+    console.log("Attempted query: ", query);
     connection.query(query, (err, results) => {
       if (err) {
-        console.error('Error querying the database: ', err);
-        return reject(err);
+        console.error('SQL Error:', err);
+        return reject(new Error('Error message: ' + err.sqlMessage));
       }
-      if (results.length === 0) {
-        return reject(new Error('Invalid username or password'));
-      }
-      console.log("User returned:", results[0]); // unsecure show all the database results to console log
-      const user = results[0];
-      resolve(user);
+      // Some inputs resultin warning instead of errors so check for warnings
+      connection.query('SHOW WARNINGS', (warnErr, warnings) => {
+        if (warnErr) {
+          console.error('Warning error:', warnErr);
+        } else if (warnings.length > 0) {
+          // if more than one then combine all warnings together and display them
+          const warningMessage = warnings.map(w => `${w.Level}: ${w.Message}`).join('; ');
+          console.log('MySQL Warnings:', warnings);
+          return reject(new Error('Error message: ' + warningMessage));
+        }
+        console.log('Query results:', results);
+        if (results.length === 0) {
+          return reject(new Error('Invalid username or password'));
+        }
+        const user = results[0];
+        console.log('User returned:', user);
+        resolve(user);
+      });
     });
   });
 };

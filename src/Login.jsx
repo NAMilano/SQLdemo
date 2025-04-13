@@ -35,7 +35,8 @@ const LoginPage = () => {
         login(data); // Store user data in context
         navigate('/user'); // navigate to the user info page after successful login
       } else {
-        alert('Invalid username and/or password. Please try again.');
+        const error = await response.text();
+        alert(error);
       }
     } catch (err) {
       console.error('Login failed:', err);
@@ -67,7 +68,8 @@ const LoginPage = () => {
         login(data); // store user data in context
         navigate('/user'); // navigate to the user info page after successful account creation
       } else {
-        alert('Error creating account');
+        const error = await response.text();
+        alert(error);
       }
     } catch (err) {
       console.error('Account creation failed:', err);
