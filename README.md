@@ -1,3 +1,5 @@
+*****DATABASE DEACTIVATED*****
+
 SQL Demo Project for CSI-3480 Security and Privacy in Computing
 
 Fake bank login and create account web application to demenstrate SQL injections.
