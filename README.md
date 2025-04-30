@@ -1,4 +1,4 @@
-*****DATABASE DEACTIVATED*****
+*****DATABASE DEACTIVATED: Not functional*****
 
 SQL Demo Project for CSI-3480 Security and Privacy in Computing
 
