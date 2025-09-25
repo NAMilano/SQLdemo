@@ -21,3 +21,13 @@ Unsecure Branch
   - No SQL injection protection
   - Poor coding practices
   - Poor overall security
+
+
+
+
+Instructions:
+1. Open the repository in a code editor
+2. Open the terminal
+3. Run the command "npm install concurrently --save-dev"
+4. Run the command "npm start"
+5. Click on the local host link
