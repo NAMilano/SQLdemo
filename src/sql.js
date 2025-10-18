@@ -1,9 +1,9 @@
 import mysql from 'mysql2';
 
-const DB_HOST = "csi3480-courseproject.cds6mc4ieyzx.us-east-2.rds.amazonaws.com";
-const DB_USER = "admin";
-const DB_PASSWORD = "adminpassword";
-const DB_NAME = "sqldemo";
+const DB_HOST = ""; // endpoint here
+const DB_USER = ""; // username
+const DB_PASSWORD = ""; // password
+const DB_NAME = "sqldemo"; // database name
 
 // Create a connection to the database
 const connection = mysql.createConnection({
